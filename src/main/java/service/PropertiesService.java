@@ -2,8 +2,8 @@ package service;
 
 import lombok.Getter;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 @Getter
@@ -19,13 +19,14 @@ public class PropertiesService {
     private final Integer pollingIntervalInMin;
 
     public PropertiesService() {
-        String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-        String appConfigPath = rootPath + "app.properties";
-        //String appConfigPath = rootPath + "app-dev.properties";
+        InputStream stream = this.getClass()
+                .getClassLoader()
+                .getResourceAsStream("app-dev.properties");
+
         Properties appProps = new Properties();
 
         try {
-            appProps.load(new FileInputStream(appConfigPath));
+            appProps.load(stream);
         } catch (IOException e) {
             e.printStackTrace();
         }

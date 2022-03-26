@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+  eth-token-monitor:
+    image: stylepatrick/eth-token-monitor:1.0
+    restart: always
+    ports:
+      - "8502:8080"
+    environment:
+      etherScanApi: https://api.etherscan.io
+      etherScanApiKey: 
+      botToke: 
+      chatId: 
+      contractAddress: 
+      address: 
+      tokenSymbol: 
+      pollingIntervalInMin: 30
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "10"
