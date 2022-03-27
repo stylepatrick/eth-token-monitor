@@ -9,10 +9,8 @@ import java.net.http.HttpResponse;
 public class TelegramApiService {
 
     public static void sendNotification(String notification) {
-        PropertiesService propertiesService = new PropertiesService();
-
         String telegramBotUrl = "https://api.telegram.org/" +
-                "bot" + propertiesService.getBotToke() + "/sendMessage?chat_id=" + propertiesService.getChatId() + "&text=";
+                "bot" + PropertiesService.botToke + "/sendMessage?chat_id=" + PropertiesService.chatId + "&text=";
 
         String messageUrl = telegramBotUrl + notification;
 

@@ -13,11 +13,10 @@ import java.net.http.HttpResponse;
 public class EtherScanApiService {
 
     public static TokenAccountBalance getTokenBalance(String contractAddress, String address) {
-        PropertiesService propertiesService = new PropertiesService();
-        String etherScanEndpoint = propertiesService.getEtherScanApi() + "/api?module=account&action=tokenbalance" +
+        String etherScanEndpoint = PropertiesService.etherScanApi + "/api?module=account&action=tokenbalance" +
                 "&contractaddress=" + contractAddress +
                 "&address=" + address +
-                "&tag=latest&apikey=" + propertiesService.getEtherScanApiKey();
+                "&tag=latest&apikey=" + PropertiesService.etherScanApiKey;
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()

@@ -1,27 +1,26 @@
 package service;
 
-import lombok.Getter;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-@Getter
 public class PropertiesService {
 
-    private final String etherScanApi;
-    private final String etherScanApiKey;
-    private final String botToke;
-    private final String chatId;
-    private final String contractAddress;
-    private final String address;
-    private final String tokenSymbol;
-    private final Integer pollingIntervalInMin;
+    private static final String env = "app-dev.properties";
 
-    public PropertiesService() {
-        InputStream stream = this.getClass()
+    public static String etherScanApi;
+    public static String etherScanApiKey;
+    public static String botToke;
+    public static String chatId;
+    public static String contractAddress;
+    public static String address;
+    public static String tokenSymbol;
+    public static Integer pollingIntervalInMin;
+
+    public static void initProperties() {
+        InputStream stream = PropertiesService.class
                 .getClassLoader()
-                .getResourceAsStream("app-dev.properties");
+                .getResourceAsStream(env);
 
         Properties appProps = new Properties();
 
@@ -39,6 +38,5 @@ public class PropertiesService {
         address = appProps.getProperty("address");
         tokenSymbol = appProps.getProperty("tokenSymbol");
         pollingIntervalInMin = Integer.valueOf(appProps.getProperty("pollingIntervalInMin"));
-
     }
 }
